@@ -21,7 +21,7 @@ export default function HeroSection({ onShopClick, onServicesClick }: HeroSectio
   return (
     <section className="relative bg-zinc-950 text-white overflow-hidden border-b border-zinc-800">
       {/* High-Contrast Editorial Photography Overlay */}
-      <div className="absolute inset-0 z-0 opacity-30 mix-blend-luminosity">
+      <div className="absolute inset-0 z-0 opacity-25 mix-blend-luminosity">
         <img
           src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&auto=format&fit=crop&q=80"
           alt="Luxury Streetwear Editorial"
@@ -31,8 +31,19 @@ export default function HeroSection({ onShopClick, onServicesClick }: HeroSectio
       </div>
 
       {/* Main Hero Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 md:pt-28 md:pb-32 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 md:pt-24 md:pb-28 flex flex-col items-center text-center">
         
+        {/* Brand Logo Showcase */}
+        <div className="mb-6 flex flex-col items-center">
+          <div className="p-3.5 bg-zinc-900/90 rounded-2xl border border-zinc-800 shadow-2xl backdrop-blur-md">
+            <img
+              src="/logo.png"
+              alt="My Style Official Logo"
+              className="h-12 sm:h-16 w-auto object-contain brightness-0 invert"
+            />
+          </div>
+        </div>
+
         {/* Top Minimal Badge with Orange accent */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900 border border-zinc-700 text-xs font-black uppercase tracking-widest text-orange-400 mb-6">
           <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -70,16 +81,15 @@ export default function HeroSection({ onShopClick, onServicesClick }: HeroSectio
             <span>Our Services & Guarantees</span>
           </button>
         </div>
-
       </div>
 
-      {/* Bottom Marquee Feature Ticker */}
+      {/* Marquee Ticker Strip */}
       <div className="relative z-10 bg-zinc-900 border-t border-zinc-800 py-3 overflow-hidden">
-        <div className="flex items-center justify-around gap-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400 whitespace-nowrap px-4">
-          {tickerItems.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-6">
-              <span className="hover:text-white transition cursor-default">{item}</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+        <div className="flex gap-8 items-center whitespace-nowrap animate-marquee">
+          {tickerItems.concat(tickerItems).map((item, index) => (
+            <div key={index} className="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-zinc-400">
+              <span>{item}</span>
+              <span className="text-emerald-500 font-black">★</span>
             </div>
           ))}
         </div>
