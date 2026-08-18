@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #09090b;       /* 1st: Black */
+    --color-secondary: #16a34a;     /* 2nd: Green */
+    --color-tertiary: #ffffff;      /* 3rd: White */
+    --color-quaternary: #f97316;    /* 4th: Orange */
+    --background: #ffffff;
+    --foreground: #09090b;
+    --border-color: #e4e4e7;
+    --surface-color: #fafafa;
+    --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans, system-ui, sans-serif);
+    overflow-x: hidden;
+  }
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Custom Utilities for High-End Streetwear Store */
+.brand-title {
+  font-family: var(--font-heading);
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+
+.gallery-thumbnail-active {
+  border-color: #09090b !important;
+  transform: scale(1.03);
+}
+
+.color-swatch-selected {
+  outline: 2px solid #09090b;
+  outline-offset: 2px;
+}
+
+.size-btn-selected {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+  border-color: #09090b !important;
+}
+
+.accordion-enter {
+  max-height: 500px;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.accordion-leave {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+/* Drawer Overlay */
+.drawer-backdrop {
+  background-color: rgba(9, 9, 11, 0.6);
+  backdrop-filter: blur(4px);
+}

@@ -1,0 +1,30 @@
+services:
+  mongo:
+    image: mongo:8.0
+    command: ["mongod", "--port", "27029", "--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "27029:27029"
+    volumes:
+      - clothing-mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--port", "27029", "--eval", "db.adminCommand({ ping: 1 }).ok"]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+
+  mongo-init:
+    image: mongo:8.0
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: "no"
+    entrypoint:
+      - bash
+      - -c
+      - >-
+        mongosh --host mongo --port 27029 --quiet --eval
+        "try { rs.status() } catch (error) {
+        rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'localhost:27029'}]}) }"
+
+volumes:
+  clothing-mongo-data:
